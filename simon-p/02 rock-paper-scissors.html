@@ -8,47 +8,57 @@
       .result {
         font-weight: 700;
       }
+
+      .btn-rock {
+        /* background: url(images/rock.png); */
+
+        background-image: url(images/rock.png);
+      }
+      .btn-paper {
+        background: url(images/paper.png);
+      }
+      .btn-scissors {
+        background: url(images/scissors-.png);
+      }
+      .btn-rock,
+      .btn-paper,
+      .btn-scissors {
+        width: 80px;
+        height: 80px;
+        background-color: pink;
+        border: 1px solid black;
+        border-radius: 25px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
     </style>
   </head>
   <body>
-    <p>Rock Paper Scissors</p>
+    <h2>Rock Paper Scissors</h2>
     <button
-      onclick=" myMove ='ROCK';
-      pcMove = array[Math.floor(Math.random() * 3)];
-      htmlGenerator(element_js_move_option);
-      winorlose(myMove,pcMove);
-      htmlResultGenerator(result);
+      class="btn-rock"
+      onclick=" myMove ='ROCK'.toLowerCase();
+      pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
+      Compete(myMove,pcMove);
     "
-    >
-      Rock
-    </button>
+    ></button>
     <button
+      class="btn-paper"
       onclick=" 
-    myMove ='PAPER';
-    
-     pcMove = array[Math.floor(Math.random() * 3)];
-    
-    htmlGenerator(element_js_move_option);
-      winorlose(myMove,pcMove);
-      htmlResultGenerator(result);
-    
+    myMove ='PAPER'.toLowerCase();
+    pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
+      Compete(myMove,pcMove);
     "
-    >
-      Paper
-    </button>
+    ></button>
     <button
+      class="btn-scissors"
       onclick=" 
-      myMove ='SCISSORS';    
-      pcMove = array[Math.floor(Math.random() * 3)];
-    
-      htmlGenerator(element_js_move_option);
-      winorlose(myMove,pcMove);
-      htmlResultGenerator(result);
-     
+      myMove ='SCISSORS'.toLowerCase();    
+      pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
+      Compete(myMove,pcMove);
       "
-    >
-      Scissors
-    </button>
+    ></button>
     <p class="js-result result">Result</p>
 
     <!-- 
@@ -59,7 +69,7 @@
 
     <p class="js-move-option">You: _ _:Computer</p>
 
-    <div class="js-summary">Win:0 , Lose: 0 , Tie:0</div>
+    <div class="js-summary">Win: 0 , Lose: 0 , Tie: 0</div>
 
     <script>
       let array = ["ROCK", "PAPER", "SCISSORS"];
@@ -75,36 +85,30 @@
       function winorlose(myMove, pcMove) {
         if (myMove.toLowerCase() === pcMove.toLocaleLowerCase()) {
           tie++;
-          // console.log(`tie : ${tie}`);
+
           result = "TIE";
         } else if (myMove.toLowerCase() === "rock") {
           if (pcMove.toLowerCase() === "paper") {
             lose++;
-            // console.log(`lose : ${lose}`);
             result = "LOSE";
           } else {
             win++;
-            // console.log(`win : ${win}`);
             result = "Win";
           }
         } else if (myMove.toLocaleLowerCase() === "paper") {
           if (pcMove.toLocaleLowerCase() === "scissors") {
             lose++;
-            // console.log(`lose : ${lose}`);
             result = "LOSE";
           } else {
             win++;
-            // console.log(`win : ${win}`);
             result = "Win";
           }
         } else if (myMove.toLocaleLowerCase() === "scissors") {
           if (pcMove.toLowerCase() === "paper") {
             win++;
-            // console.log(`win : ${win}`);
             result = "Win";
           } else {
             lose++;
-            // console.log(`lose : ${lose}`);
             result = "LOSE";
           }
         }
@@ -121,8 +125,15 @@
         ).innerHTML = `Win: ${win},  Lose: ${lose},  Tie: ${tie}`;
       }
 
-      function htmlGenerator(element) {
-        element.innerHTML = `You ${myMove} ,  ${pcMove} Computer`;
+      function htmlGenerator(element, myMove, pcMove) {
+        element.innerHTML = `You  <button class='btn-${myMove}'> </button>   <button class='btn-${pcMove}'> </button> Computer`;
+      }
+
+      function Compete(myMove, pcMove) {
+        htmlGenerator(element_js_move_option, myMove, pcMove);
+        winorlose(myMove, pcMove);
+        htmlResultGenerator(result);
+        return pcMove;
       }
 
       // console.log(go);
