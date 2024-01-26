@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rockpaper scissors</title>
     <style>
+      * {
+        color: white;
+      }
+      body {
+        background-color: black;
+      }
       .result {
-        font-weight: 700;
+        /* font-weight: 700; */
       }
 
       .btn-rock {
@@ -23,6 +29,7 @@
       .btn-rock,
       .btn-paper,
       .btn-scissors {
+        cursor: pointer;
         width: 80px;
         height: 80px;
         background-color: pink;
@@ -31,6 +38,15 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+      }
+
+      .btn-reset {
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        font-size: 15px;
+        padding: 8px 15px;
+        margin-top: 10px;
       }
     </style>
   </head>
@@ -59,7 +75,7 @@
       Compete(myMove,pcMove);
       "
     ></button>
-    <p class="js-result result">Result</p>
+    <p class="js-result result"></p>
 
     <!-- 
     <p>
@@ -67,9 +83,23 @@
       <span class="js-move-pc"> _:Computer</span>
     </p> -->
 
-    <p class="js-move-option">You: _ _:Computer</p>
+    <p class="js-move-option"></p>
 
-    <div class="js-summary">Win: 0 , Lose: 0 , Tie: 0</div>
+    <div class="js-summary">Win: 0, Losses: 0, Tie: 0</div>
+    <button
+      class="btn-reset"
+      onclick="
+      tie = 0;
+      win = 0;
+      lose = 0;
+      
+      htmlResultGenerator2(win, lose, tie);
+      htmlReset(element_result);
+      htmlReset(element_js_move_option);
+    "
+    >
+      Reset Score
+    </button>
 
     <script>
       let array = ["ROCK", "PAPER", "SCISSORS"];
@@ -81,11 +111,12 @@
       let lose = 0;
       let result;
       let element_js_move_option = document.querySelector(".js-move-option");
+      let element_summary = document.querySelector(".js-summary");
+      let element_result = document.querySelector(".js-result");
 
       function winorlose(myMove, pcMove) {
         if (myMove.toLowerCase() === pcMove.toLocaleLowerCase()) {
           tie++;
-
           result = "TIE";
         } else if (myMove.toLowerCase() === "rock") {
           if (pcMove.toLowerCase() === "paper") {
@@ -115,14 +146,21 @@
         htmlResultGenerator2(win, lose, tie);
       }
 
+      function htmlReset(element) {
+        if (element) element.innerHTML = "";
+      }
+
       function htmlResultGenerator(result1) {
-        document.querySelector(".js-result").innerHTML = `${result1}.`;
+        if (result.toLowerCase() === "tie") {
+          document.querySelector(".js-result").innerHTML = `${result1}.`;
+        } else
+          document.querySelector(".js-result").innerHTML = `You ${result1}.`;
       }
 
       function htmlResultGenerator2(win, lose, tie) {
         document.querySelector(
           ".js-summary"
-        ).innerHTML = `Win: ${win},  Lose: ${lose},  Tie: ${tie}`;
+        ).innerHTML = `Win: ${win},  Losses: ${lose},  Tie: ${tie}`;
       }
 
       function htmlGenerator(element, myMove, pcMove) {
@@ -133,7 +171,7 @@
         htmlGenerator(element_js_move_option, myMove, pcMove);
         winorlose(myMove, pcMove);
         htmlResultGenerator(result);
-        return pcMove;
+        // return pcMove;
       }
 
       // console.log(go);
