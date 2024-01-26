@@ -54,25 +54,23 @@
     <h2>Rock Paper Scissors</h2>
     <button
       class="btn-rock"
-      onclick=" myMove ='ROCK'.toLowerCase();
-      pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
-      Compete(myMove,pcMove);
+      onclick=" 
+      // myMove ='ROCK'.toLowerCase();
+      playGame('rock');
+     
+    
     "
     ></button>
     <button
       class="btn-paper"
       onclick=" 
-    myMove ='PAPER'.toLowerCase();
-    pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
-      Compete(myMove,pcMove);
+       playGame('paper');
     "
     ></button>
     <button
       class="btn-scissors"
       onclick=" 
-      myMove ='SCISSORS'.toLowerCase();    
-      pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
-      Compete(myMove,pcMove);
+      playGame('scissors');
       "
     ></button>
     <p class="js-result result"></p>
@@ -102,8 +100,7 @@
     </button>
 
     <script>
-      let array = ["ROCK", "PAPER", "SCISSORS"];
-      let pcMove;
+      // let pcMove;
       // = array[go];
       let myMove;
       let tie = 0;
@@ -172,6 +169,17 @@
         winorlose(myMove, pcMove);
         htmlResultGenerator(result);
         // return pcMove;
+      }
+
+      function playGame(myMove) {
+        pcMove = pcMoveFunction();
+        Compete(myMove, pcMove);
+      }
+
+      function pcMoveFunction() {
+        const array = ["ROCK", "PAPER", "SCISSORS"];
+        const pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
+        return pcMove;
       }
 
       // console.log(go);
