@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rockpaper scissors</title>
+    <style>
+      .result {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <button
+      onclick=" myMove ='ROCK';
+      pcMove = array[Math.floor(Math.random() * 3)];
+      htmlGenerator(element_js_move_option);
+      winorlose(myMove,pcMove);
+      htmlResultGenerator(result);
+    "
+    >
+      Rock
+    </button>
+    <button
+      onclick=" 
+    myMove ='PAPER';
+    
+     pcMove = array[Math.floor(Math.random() * 3)];
+    
+    htmlGenerator(element_js_move_option);
+      winorlose(myMove,pcMove);
+      htmlResultGenerator(result);
+    
+    "
+    >
+      Paper
+    </button>
+    <button
+      onclick=" 
+      myMove ='SCISSORS';    
+      pcMove = array[Math.floor(Math.random() * 3)];
+    
+      htmlGenerator(element_js_move_option);
+      winorlose(myMove,pcMove);
+      htmlResultGenerator(result);
+     
+      "
+    >
+      Scissors
+    </button>
+    <p class="js-result result">Result</p>
+
+    <!-- 
+    <p>
+      <span class="js-move-you">You: _ </span>
+      <span class="js-move-pc"> _:Computer</span>
+    </p> -->
+
+    <p class="js-move-option">You: _ _:Computer</p>
+
+    <div class="js-summary">Win:0 , Lose: 0 , Tie:0</div>
+
+    <script>
+      let array = ["ROCK", "PAPER", "SCISSORS"];
+      let pcMove;
+      // = array[go];
+      let myMove;
+      let tie = 0;
+      let win = 0;
+      let lose = 0;
+      let result;
+      let element_js_move_option = document.querySelector(".js-move-option");
+
+      function winorlose(myMove, pcMove) {
+        if (myMove.toLowerCase() === pcMove.toLocaleLowerCase()) {
+          tie++;
+          // console.log(`tie : ${tie}`);
+          result = "TIE";
+        } else if (myMove.toLowerCase() === "rock") {
+          if (pcMove.toLowerCase() === "paper") {
+            lose++;
+            // console.log(`lose : ${lose}`);
+            result = "LOSE";
+          } else {
+            win++;
+            // console.log(`win : ${win}`);
+            result = "Win";
+          }
+        } else if (myMove.toLocaleLowerCase() === "paper") {
+          if (pcMove.toLocaleLowerCase() === "scissors") {
+            lose++;
+            // console.log(`lose : ${lose}`);
+            result = "LOSE";
+          } else {
+            win++;
+            // console.log(`win : ${win}`);
+            result = "Win";
+          }
+        } else if (myMove.toLocaleLowerCase() === "scissors") {
+          if (pcMove.toLowerCase() === "paper") {
+            win++;
+            // console.log(`win : ${win}`);
+            result = "Win";
+          } else {
+            lose++;
+            // console.log(`lose : ${lose}`);
+            result = "LOSE";
+          }
+        }
+        htmlResultGenerator2(win, lose, tie);
+      }
+
+      function htmlResultGenerator(result1) {
+        document.querySelector(".js-result").innerHTML = `${result1}.`;
+      }
+
+      function htmlResultGenerator2(win, lose, tie) {
+        document.querySelector(
+          ".js-summary"
+        ).innerHTML = `Win: ${win},  Lose: ${lose},  Tie: ${tie}`;
+      }
+
+      function htmlGenerator(element) {
+        element.innerHTML = `You ${myMove} ,  ${pcMove} Computer`;
+      }
+
+      // console.log(go);
+    </script>
+  </body>
+</html>
