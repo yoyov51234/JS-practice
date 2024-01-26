@@ -87,11 +87,11 @@
     <button
       class="btn-reset"
       onclick="
-      tie = 0;
-      win = 0;
-      lose = 0;
+      score.tie = 0;
+      score.win = 0;
+      score.lose = 0;
       
-      htmlResultGenerator2(win, lose, tie);
+      htmlResultGenerator2(score);
       htmlReset(element_result);
       htmlReset(element_js_move_option);
     "
@@ -103,9 +103,14 @@
       // let pcMove;
       // = array[go];
       let myMove;
-      let tie = 0;
-      let win = 0;
-      let lose = 0;
+      const score = {
+        win: 0,
+        lose: 0,
+        tie: 0,
+      };
+      // let tie = 0;
+      // let win = 0;
+      // let lose = 0;
       let result;
       let element_js_move_option = document.querySelector(".js-move-option");
       let element_summary = document.querySelector(".js-summary");
@@ -113,34 +118,34 @@
 
       function winorlose(myMove, pcMove) {
         if (myMove.toLowerCase() === pcMove.toLocaleLowerCase()) {
-          tie++;
           result = "TIE";
+          updateScore(score, result);
         } else if (myMove.toLowerCase() === "rock") {
           if (pcMove.toLowerCase() === "paper") {
-            lose++;
             result = "LOSE";
+            updateScore(score, result);
           } else {
-            win++;
             result = "Win";
+            updateScore(score, result);
           }
         } else if (myMove.toLocaleLowerCase() === "paper") {
           if (pcMove.toLocaleLowerCase() === "scissors") {
-            lose++;
             result = "LOSE";
+            updateScore(score, result);
           } else {
-            win++;
             result = "Win";
+            updateScore(score, result);
           }
         } else if (myMove.toLocaleLowerCase() === "scissors") {
           if (pcMove.toLowerCase() === "paper") {
-            win++;
             result = "Win";
+            updateScore(score, result);
           } else {
-            lose++;
             result = "LOSE";
+            updateScore(score, result);
           }
         }
-        htmlResultGenerator2(win, lose, tie);
+        htmlResultGenerator2(score);
       }
 
       function htmlReset(element) {
@@ -154,10 +159,10 @@
           document.querySelector(".js-result").innerHTML = `You ${result1}.`;
       }
 
-      function htmlResultGenerator2(win, lose, tie) {
+      function htmlResultGenerator2(score) {
         document.querySelector(
           ".js-summary"
-        ).innerHTML = `Win: ${win},  Losses: ${lose},  Tie: ${tie}`;
+        ).innerHTML = `Win: ${score.win},  Losses: ${score.lose},  Tie: ${score.tie}`;
       }
 
       function htmlGenerator(element, myMove, pcMove) {
@@ -180,6 +185,16 @@
         const array = ["ROCK", "PAPER", "SCISSORS"];
         const pcMove = array[Math.floor(Math.random() * 3)].toLowerCase();
         return pcMove;
+      }
+
+      function updateScore(object, result) {
+        if (result.toLowerCase() === "win") {
+          object.win++;
+        } else if (result.toLowerCase() === "tie") {
+          object.tie++;
+        } else if (result.toLowerCase() === "lose") {
+          object.lose++;
+        }
       }
 
       // console.log(go);
