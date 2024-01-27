@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+    <style>
+      .btn-subsribe {
+        padding: 5px 15px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>YouTube Subscribe Button</p>
+    <button
+      class="btn-subsribe"
+      onclick=" subscribe();   
+    "
+    >
+      Subscribe
+    </button>
+    <br />
+    <br />
+    <br />
+    <p>Rock Paper Scissors</p>
+    <a href="">Click here</a>
+    <br />
+    <br />
+    <br />
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 =+ $10 shipping.</p>
+    <p>Orders over $40 =FREE Shipping</p>
+    <input
+      type="text"
+      placeholder="cost of goods"
+      id="input-cost-id"
+      class="input-cost"
+      onkeydown="
+      if(event.key ==='Enter'){
+        cal();
+      }
+      "
+    />
+    <button
+      class="btn-cal"
+      onclick="
+    cal();"
+    >
+      Calculate
+    </button>
+    <p class="js-cost"></p>
+    <br />
+    <br />
+    <br />
+    <p>Css version of theses projects</p>
+
+    <script>
+      //   console.log(but_subscribe);
+      //   console.log(document.querySelector("#input-cost-id"));
+
+      function subscribe() {
+        const but_subscribe = document.querySelector(".btn-subsribe");
+        but_subscribe.innerHTML === "Subcribed"
+          ? (but_subscribe.innerHTML = "Subcribe")
+          : (but_subscribe.innerHTML = "Subcribed");
+      }
+
+      function cal() {
+        let cost;
+        // !document.querySelector(".input-cost")? { }: console.alert('please input the cost! ');
+        if (!document.querySelector(".input-cost").value) {
+          alert("please input the cost! ");
+          return;
+        } else {
+          cost = Number(document.querySelector(".input-cost").value);
+        }
+        // cost = Number(cost);
+        const costElement = document.querySelector(".js-cost");
+        if (cost >= 40) {
+          costElement.innerHTML = `$${cost}`;
+        } else {
+          const costTotal = cost + 10;
+          costElement.innerHTML = `$${costTotal}`;
+        }
+      }
+    </script>
+  </body>
+</html>
