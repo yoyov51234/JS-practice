@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const product2 = {
+        name: "socks",
+        price: 2536,
+        rating: {
+          likes: 1.5,
+          count: 87,
+        },
+        // propery : value pare
+      };
+
+      const jsonObject = JSON.stringify(product2);
+      console.log(` this is a JSON object : ${jsonObject}`);
+
+      const product3 = JSON.parse(jsonObject);
+      console.log(product3);
+    </script>
+  </body>
+</html>

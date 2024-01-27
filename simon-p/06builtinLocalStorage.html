@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!--  in the rock paper project,  if we refresh the page, the score is set back to 0, we lost of track 
+    how to fix this?
+ -->
+
+    <script>
+      // localStorage only supports strings
+      // how to save a string into local stroage?
+      localStorage.setItem("message", "hello");
+
+      //how to get out a stirng outside a local storage？
+
+      console.log(localStorage.getItem("message"));
+
+      console.log(localStorage.getItem("nishuoshide"));
+      // localStorage.clear();
+
+      localStorage.removeItem("message");
+
+      console.log(localStorage.getItem("message"));
+
+      console.log(localStorage.getItem("nishuoshide"));
+
+      localStorage.clear();
+    </script>
+  </body>
+</html>
