@@ -37,11 +37,10 @@
       id="input-cost-id"
       class="input-cost"
       onkeydown="
-      if(event.key ==='Enter'){
-        cal();
-      }
+      handleCostKeyDown(event);
       "
     />
+    <!-- to make the onkeydown info into a function  -->
     <button
       class="btn-cal"
       onclick="
@@ -56,6 +55,11 @@
     <p>Css version of theses projects</p>
 
     <script>
+      function handleCostKeyDown(event) {
+        if (event.key === "Enter") {
+          cal();
+        }
+      }
       //   console.log(but_subscribe);
       //   console.log(document.querySelector("#input-cost-id"));
 
