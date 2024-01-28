@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .todo-item span:first-of-type {
+        display: inline-block;
+        width: 200px;
+      }
+
+      .todo-item span:nth-child(2) {
+        display: inline-block;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Todo list Practice 1</p>
+    <input type="text" placeholder="Todo name" class="" id="input1" />
+    <input type="date" id="input2" />
+    <button
+      class="js-btn-add"
+      onclick="
+    //   addToArraryList();
+     const array = addToArraryList()
+
+    
+    todolistHtmlGenerator(array);
+    "
+    >
+      Add
+    </button>
+
+    <div class="todolists"></div>
+    <!-- <p class="todo-item"></p> -->
+
+    <script>
+      let array1 = [];
+      //   let todolistHTML = "";
+      //   click with inputs, click without inputs
+      function addToArraryList() {
+        const todoObject = {
+          todo: "",
+          date: "",
+        };
+        const inputElement = document.querySelector("#input1");
+        const inputElement2 = document.querySelector("#input2");
+        if (!inputElement.value || !inputElement2.value) {
+          // click without inputs
+          alert("Please input the to do item  and the date!");
+          return;
+        } else {
+          //   click with inputs,
+          todoObject.todo = inputElement.value;
+          todoObject.date = inputElement2.value;
+
+          array1.push(todoObject);
+        }
+        inputElement.value = "";
+        inputElement2.value = "";
+        console.log(array1);
+        return array1;
+        // console.log(array1);
+      }
+
+      function todolistHtmlGenerator(array) {
+        let todolistHTML = "";
+        for (let i = 0; i < array.length; i++) {
+          todolistHTML += ` <p class='todo-item'><span>${array[i].todo}</span>     <span>${array[i].date}</span>   <button>Delete</button> </p>`;
+        }
+
+        document.querySelector(".todolists").innerHTML = todolistHTML;
+      }
+    </script>
+  </body>
+</html>
