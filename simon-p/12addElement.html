@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <p>i like you</p> -->
+
+    <div class="div1">wo shi zhu</div>
+
+    <button
+      onclick="func1append();
+    "
+    >
+      add -append
+    </button>
+    <br />
+    <br />
+    <br />
+    <div class="div2">wo shi zhu</div>
+    <button
+      onclick="
+      const array2= addArray();
+      func2innerhtml(array2);
+      htmlDisplay(div2Element,html)
+
+
+  "
+    >
+      add - innerHTML
+    </button>
+
+    <script>
+      let array = [];
+      //   const pElem = document.querySelector("p");
+      //   pElem.append(", do you like me ?");
+
+      //   try with append
+      function func1append() {
+        const divElem = document.querySelector(".div1");
+        divElem.append("<p>pig</p>");
+        // append add text to inner html, when quoting as string
+        //  divElem.append('<p>pig</p>'');
+      }
+
+      function addArray() {
+        array += "good";
+        // return array;
+        console.log(array);
+      }
+
+      const div2Element = document.querySelector(".div2");
+      let html = "";
+      function func2innerhtml(array) {
+        for (let i = 0; i < array.length; i++) {
+          html += array[i];
+        }
+      }
+
+      console.log(html);
+
+      function htmlDisplay(htmlElement, html) {
+        htmlElement.innerHTML = html;
+      }
+    </script>
+  </body>
+</html>
