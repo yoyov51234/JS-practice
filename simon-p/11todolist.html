@@ -11,11 +11,17 @@
     <button
       class="js-btn-add"
       onclick="
-      addToArraryList();
+    //   addToArraryList();
+     const array = addToArraryList()
+
+      displayArrary(array);
     "
     >
       Add
     </button>
+
+    <div class="todolists"></div>
+    <!-- <p class="todo-item"></p> -->
 
     <script>
       let array1 = [];
@@ -31,8 +37,33 @@
           //   click with inputs,
           array1.push(inputElement.value);
         }
-        console.log(array1);
+        inputElement.value = "";
+        return array1;
+        // console.log(array1);
       }
+      let tolistDivElement = document.querySelector(".todolists");
+      console.log(tolistDivElement);
+
+      function displayArrary(array) {
+        tolistDivElement.innerHTML = "";
+        for (let i = 0; i < array.length; i++) {
+          const p = document.createElement("p");
+          p.textContent = array[i];
+          tolistDivElement.appendChild(p);
+        }
+      }
+
+      //   tolistDivElement.append("<p>good</p>");
+      //   console.log(tolistDivElement);
+
+      //   displayArrary(array1);
+
+      //   function toDolistHTMLGenerator(item) {
+      //     const tolistDivElement = document.querySelector(".todolists");
+      //     const todoitemElement = document.createElement("p");
+      //     todoitemElement.innerHTML = item;
+      //     tolistDivElement.appendChild(todoitemElement);
+      //   }
     </script>
   </body>
 </html>
