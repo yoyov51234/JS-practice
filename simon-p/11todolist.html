@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Todo list Practice 1</p>
+    <input type="text" placeholder="Todo name" class="" id="input1" />
+    <button
+      class="js-btn-add"
+      onclick="
+      addToArraryList();
+    "
+    >
+      Add
+    </button>
+
+    <script>
+      let array1 = [];
+      //   click with inputs, click without inputs
+      function addToArraryList() {
+        const inputElement = document.querySelector("#input1");
+
+        if (!inputElement.value) {
+          // click without inputs
+          alert("Please input the to do item !");
+          return;
+        } else {
+          //   click with inputs,
+          array1.push(inputElement.value);
+        }
+        console.log(array1);
+      }
+    </script>
+  </body>
+</html>
